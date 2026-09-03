@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DECA Study Plan Builder</title>
+<meta name="description" content="Pick your DECA events and your competition date, get a week-by-week study plan built around your cluster exam, your role-play and your written event.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <a class="wordmark" href="./">Study Plan Builder</a>
+  <p class="masthead-note">Built by DECA members, for DECA members</p>
+</header>
+
+<main>
+
+  <!-- ================= SETUP ================= -->
+  <section class="setup" id="setup">
+    <div class="setup-pitch">
+      <h1>Studying for DECA without a plan is<br><span class="mark">how you run out of time.</span></h1>
+      <p class="lede">Tell the builder what you're competing in and when. It works backward from your competition date and gives you a week-by-week plan: which instructional areas to hit, when to drill performance indicators, and what to write next in your paper.</p>
+      <p class="sig">Everything is checkable, and your progress is saved on this device.</p>
+    </div>
+
+    <form class="panel" id="planForm" autocomplete="off">
+      <h2 class="panel-title">Your events</h2>
+
+      <div class="field">
+        <label for="roleplay">Role-play event</label>
+        <select id="roleplay">
+          <option value="">Not competing in a role-play event</option>
+        </select>
+        <p class="hint" id="roleplayHint">Your cluster exam is set by this choice.</p>
+      </div>
+
+      <div class="field">
+        <label for="exam">Cluster exam</label>
+        <select id="exam">
+          <option value="">No exam</option>
+        </select>
+        <p class="hint" id="examHint">Change it only if your event uses a different exam.</p>
+      </div>
+
+      <div class="field">
+        <label for="prepared">Prepared event</label>
+        <select id="prepared">
+          <option value="">Not competing in a written event</option>
+        </select>
+        <p class="hint">Written events get their own track with a deadline per section.</p>
+      </div>
+
+      <h2 class="panel-title">Your schedule</h2>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="compDate">Competition date</label>
+          <input type="date" id="compDate" required>
+        </div>
+        <div class="field">
+          <label for="daysPerWeek">Study days per week</label>
+          <select id="daysPerWeek">
+            <option value="2">2 days</option>
+            <option value="3" selected>3 days</option>
+            <option value="4">4 days</option>
+            <option value="5">5 days</option>
+            <option value="6">6 days</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="level">Where you're starting from</label>
+        <select id="level">
+          <option value="new">First year — I'm learning the material for the first time</option>
+          <option value="returning" selected>Returning — I've competed before</option>
+          <option value="state">Coming off a win — I'm sharpening, not learning</option>
+        </select>
+      </div>
+
+      <p class="error" id="formError" hidden></p>
+      <button class="go" type="submit">Build my plan</button>
+    </form>
+  </section>
+
+  <!-- ================= PLAN ================= -->
+  <section class="plan" id="plan" hidden>
+
+    <div class="plan-head">
+      <div>
+        <h2 id="planTitle">Your plan</h2>
+        <p class="plan-sub" id="planSub"></p>
+      </div>
+      <div class="plan-actions">
+        <button type="button" class="ghost" id="editBtn">Change my events</button>
+        <button type="button" class="ghost" id="icsBtn">Add to calendar</button>
+        <button type="button" class="ghost" id="printBtn">Print</button>
+      </div>
+    </div>
+
+    <div class="strip" id="strip" aria-hidden="true"></div>
+
+    <div class="progress">
+      <div class="progress-bar"><span id="progressFill"></span></div>
+      <p id="progressText">0 of 0 done</p>
+    </div>
+
+    <div class="brief" id="brief"></div>
+
+    <div class="weeks" id="weeks"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Not affiliated with DECA Inc. Event details change every season — check the current DECA Guide before you rely on a page limit or a rubric.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

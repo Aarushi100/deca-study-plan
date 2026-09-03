@@ -1,0 +1,404 @@
+/* =========================================================================
+   styles.css
+   Palette: ink navy + paper + one highlighter yellow + red pen for deadlines.
+   Type: Archivo for everything structural, Newsreader for asides.
+   ========================================================================= */
+
+:root {
+  --ink:    #14202b;
+  --ink-2:  #46596b;
+  --paper:  #eff1ec;
+  --card:   #ffffff;
+  --mark:   #ffe24a;
+  --pen:    #b4341e;
+  --rule:   #d5dad2;
+  --rule-2: #e6e9e3;
+
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --measure: 62ch;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Archivo, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; }
+
+button, input, select { font: inherit; color: inherit; }
+
+a { color: inherit; }
+
+/* ---- masthead ---------------------------------------------------------- */
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.25rem var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.wordmark {
+  font-weight: 800;
+  font-size: 1.0625rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.masthead-note {
+  margin: 0;
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+/* ---- setup ------------------------------------------------------------- */
+
+.setup {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(2.5rem, 7vw, 5rem) var(--gutter) 4rem;
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .setup { grid-template-columns: 1.05fr 0.95fr; }
+}
+
+.setup h1 {
+  font-size: clamp(2.1rem, 5.6vw, 3.4rem);
+  max-width: 15ch;
+}
+
+.mark {
+  background-image: linear-gradient(var(--mark), var(--mark));
+  background-repeat: no-repeat;
+  background-size: 100% 0.62em;
+  background-position: 0 0.72em;
+  padding: 0 0.12em;
+}
+
+.lede {
+  max-width: var(--measure);
+  margin: 1.5rem 0 0;
+  font-size: 1.0625rem;
+  color: var(--ink-2);
+}
+
+.sig {
+  max-width: var(--measure);
+  margin: 1rem 0 0;
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: var(--ink-2);
+}
+
+/* ---- form panel -------------------------------------------------------- */
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: clamp(1.25rem, 3.5vw, 2rem);
+}
+
+.panel-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.panel-title + .field { margin-top: 1.25rem; }
+.field + .panel-title, .field-row + .panel-title { margin-top: 2rem; }
+
+.field { margin-bottom: 1.25rem; }
+
+.field-row { display: grid; gap: 1.25rem; }
+@media (min-width: 30rem) { .field-row { grid-template-columns: 1fr 1fr; } }
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+select, input[type="date"] {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+}
+
+select {
+  appearance: none;
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2314202b' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 12px 8px;
+}
+
+select:focus-visible,
+input:focus-visible,
+button:focus-visible,
+.check:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.error {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.7rem;
+  color: var(--pen);
+  border-left: 3px solid var(--pen);
+  background: #fbf0ee;
+  font-size: 0.9375rem;
+}
+
+.go {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.go:hover { background: #0a141d; }
+
+.ghost {
+  padding: 0.5rem 0.85rem;
+  background: transparent;
+  border: 1px solid var(--ink);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ghost:hover { background: var(--mark); border-color: var(--ink); }
+
+/* ---- plan -------------------------------------------------------------- */
+
+.plan { padding: clamp(2rem, 5vw, 3.5rem) var(--gutter) 4rem; }
+
+.plan-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.plan-head h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+
+.plan-sub {
+  margin: 0.5rem 0 0;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+
+.plan-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* week strip: one block per week, the last one is competition day */
+
+.strip {
+  display: flex;
+  gap: 3px;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.strip i {
+  flex: 1;
+  height: 10px;
+  background: var(--rule);
+}
+
+.strip i.filled { background: var(--ink); }
+.strip i.last   { background: var(--pen); }
+
+.progress { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; }
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--rule-2);
+  border: 1px solid var(--rule);
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--mark);
+  transition: width 0.25s ease;
+}
+
+.progress p { margin: 0; font-size: 0.8125rem; color: var(--ink-2); white-space: nowrap; }
+
+/* the briefing block */
+
+.brief {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 48rem) {
+  .brief { grid-template-columns: repeat(3, 1fr); }
+}
+
+.brief-cell { background: var(--card); padding: 1.25rem; }
+
+.brief-cell h3 { font-size: 1.0625rem; margin-bottom: 0.35rem; }
+
+.brief-cell p { margin: 0 0 0.5rem; font-size: 0.9375rem; color: var(--ink-2); }
+
+.brief-cell ul { margin: 0.5rem 0 0; padding-left: 1.1rem; font-size: 0.875rem; color: var(--ink-2); }
+
+.brief-cell li { margin-bottom: 0.2rem; }
+
+.kicker {
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+}
+
+/* weeks */
+
+.week {
+  display: grid;
+  gap: 0.5rem 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 48rem) {
+  .week { grid-template-columns: 12rem 1fr; }
+}
+
+.week-rail h3 { font-size: 1.125rem; }
+
+.week-rail .dates { font-size: 0.875rem; color: var(--ink-2); margin: 0.15rem 0 0; }
+
+.week-rail .phase {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: var(--mark);
+  padding: 0.1rem 0.4rem;
+}
+
+.week.is-now .week-rail h3 { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+
+.tasks { list-style: none; margin: 0; padding: 0; }
+
+.task { display: flex; gap: 0.75rem; padding: 0.45rem 0; align-items: flex-start; }
+
+.check {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.check[aria-pressed="true"] { background: var(--ink); }
+
+.check[aria-pressed="true"]::after {
+  content: "";
+  display: block;
+  width: 0.32rem;
+  height: 0.62rem;
+  margin: 0.02rem auto 0;
+  border: solid var(--mark);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.task-text { flex: 1; max-width: var(--measure); }
+
+.task.done .task-text { color: var(--ink-2); text-decoration: line-through; }
+
+.tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--rule);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  vertical-align: 0.08em;
+}
+
+.tag.exam     { border-color: var(--ink); color: var(--ink); }
+.tag.roleplay { border-color: var(--ink); color: var(--ink); background: var(--mark); }
+.tag.written   { border-color: var(--pen); color: var(--pen); }
+.tag.logistics { border-style: dashed; }
+
+.week.final { border-top: 2px solid var(--pen); }
+.week.final .week-rail .phase { background: var(--pen); color: var(--paper); }
+
+.dday {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--pen);
+  color: var(--pen);
+  font-weight: 600;
+}
+
+footer {
+  padding: 2rem var(--gutter) 3rem;
+  border-top: 1px solid var(--rule);
+  font-family: Newsreader, Georgia, serif;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+}
+
+footer p { margin: 0; max-width: var(--measure); }
+
+/* ---- print ------------------------------------------------------------- */
+
+@media print {
+  body { background: #fff; }
+  .masthead, .plan-actions, .setup, footer, .strip, .progress { display: none !important; }
+  .plan { padding: 0; }
+  .week { break-inside: avoid; }
+  .check { display: none; }
+  .task::before { content: "☐"; margin-right: 0.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
